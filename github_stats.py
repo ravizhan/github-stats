@@ -77,8 +77,8 @@ class Queries(object):
                                                headers=headers,
                                                params=tuple(params.items()))
                 if r.status == 202:
-                    # print(f"{path} returned 202. Retrying...")
-                    print(f"A path returned 202. Retrying...")
+                    print(f"{path} returned 202. Retrying...")
+                    #print(f"A path returned 202. Retrying...")
                     await asyncio.sleep(2)
                     continue
 
@@ -98,8 +98,8 @@ class Queries(object):
                         continue
                     elif r.status_code == 200:
                         return r.json()
-        # print(f"There were too many 202s. Data for {path} will be incomplete.")
-        print("There were too many 202s. Data for this repository will be incomplete.")
+        print(f"There were too many 202s. Data for {path} will be incomplete.")
+        # print("There were too many 202s. Data for this repository will be incomplete.")
         return dict()
 
     @staticmethod
