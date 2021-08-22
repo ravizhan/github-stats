@@ -73,7 +73,7 @@ class Queries(object):
                 path = path[1:]
             try:
                 async with self.semaphore:
-                    r = await self.session.get(f"https://api.github.com/{path}",
+                    r = await self.session.get(f"https://api.github.com/user/{path}",
                                                headers=headers,
                                                params=tuple(params.items()))
                 if r.status == 202:
@@ -456,7 +456,7 @@ Languages:
         additions = 0
         deletions = 0
         for repo in await self.repos:
-            r = await self.queries.query_rest(f"/repos/{repo}/contributors")
+            r = await self.queries.query_rest(f"/repos/{repo}/stats/contributors")
             for author_obj in r:
                 # Handle malformed response from the API by skipping this repo
                 if (not isinstance(author_obj, dict)
